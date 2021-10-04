@@ -1,0 +1,13 @@
+body {
+    background-color: goldenrod;
+}
+
+article {
+    display: block;
+    margin: 10px;
+    justify-content: center;
+    border: 1px solid gray;
+    border-radius: 4px;
+    width: 15%;
+    background-color: white;
+}
