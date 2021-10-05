@@ -11,3 +11,7 @@ article {
     width: 15%;
     background-color: white;
 }
+
+li {
+    list-style: none;
+}

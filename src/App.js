@@ -37,16 +37,15 @@ function App() {
                     Haal data op!
                 </button>
 
-                <h2>{pokemonData[0].name}</h2>
-                <h2>{pokemonData[1].name}</h2>
-                <h2>{pokemonData[2].name}</h2>
-                <h2>{pokemonData[19].name}</h2>
-                {/*<PokemonCard*/}
-                {/*    pName="jigglypuff">*/}
-                {/*</PokemonCard>*/}
-                {/*<PokemonCard*/}
-                {/*    pName="ditto">*/}
-                {/*</PokemonCard>*/}
+                <ul>
+                    {pokemonData.map((pokemon) => {
+                    return <li key={pokemon.name} >
+                        <PokemonCard
+                            pName={pokemon.name}>
+                        </PokemonCard>
+                    </li>
+                    })}
+                </ul>
             </>
             }
         </>
