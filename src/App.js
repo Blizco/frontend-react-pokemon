@@ -5,35 +5,30 @@ import PokemonCard from "./components/PokemonCard"
 
 function App() {
     const [count, setCount] = useState(0);
+    const [pokemonData, setPokemonData] = useState({});
+
     console.log(`Clickbutton is ${count} keer geklikt`);
 
-    // const [pokemonData, setPokemonData] = useState({});
-    //
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         try {
-    //             const result = await axios.get("https://pokeapi.co/api/v2/pokemon/jigglypuff");
-    //             // console.log(result.data);
-    //             console.log(result.data.name);
-    //             console.log(result.data.sprites.front_default);
-    //             console.log(`Moves: ${result.data.moves.length}`);
-    //             console.log(`Weight: ${result.data.weight}`);
-    //             console.log("Abilities:")
-    //             for (let i = 0; i < result.data.abilities.length; i++) {
-    //                 console.log(result.data.abilities[i].ability.name);
-    //             }
-    //             setPokemonData(result.data);
-    //         } catch (error) {
-    //             console.error(error)
-    //         }
-    //     }
-    //
-    //     fetchData();
-    // }, [count]);
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const result = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=20&offset=0");
+                console.log(result.data.results);
+                for (let i = 0; i < result.data.results.length; i++) {
+                    console.log(result.data.results[i].name);
+                }
+                setPokemonData(result.data.results);
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
+        fetchData();
+    }, [count]);
 
     return (
-        // <>
-        //     {Object.keys(pokemonData).length > 0 &&
+        <>
+            {Object.keys(pokemonData).length > 0 &&
             <>
                 <button
                     type="button"
@@ -42,15 +37,19 @@ function App() {
                     Haal data op!
                 </button>
 
-                <PokemonCard
-                    pName="jigglypuff">
-                </PokemonCard>
-                <PokemonCard
-                    pName="ditto">
-                </PokemonCard>
+                <h2>{pokemonData[0].name}</h2>
+                <h2>{pokemonData[1].name}</h2>
+                <h2>{pokemonData[2].name}</h2>
+                <h2>{pokemonData[19].name}</h2>
+                {/*<PokemonCard*/}
+                {/*    pName="jigglypuff">*/}
+                {/*</PokemonCard>*/}
+                {/*<PokemonCard*/}
+                {/*    pName="ditto">*/}
+                {/*</PokemonCard>*/}
             </>
-            // }
-        // </>
+            }
+        </>
     );
 }
 
