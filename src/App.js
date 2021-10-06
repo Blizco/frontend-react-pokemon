@@ -16,6 +16,7 @@ function App() {
                 console.error(error)
             }
         }
+
         fetchData();
     }, [urlPokemonDeck]);
 
@@ -23,29 +24,31 @@ function App() {
         <>
             {Object.keys(pokemonData).length > 0 &&
             <>
-                <button
-                    type="button" disabled={pokemonData.previous === null}
-                    onClick={() => setUrlPokemonDeck(pokemonData.previous)}
-                >
-                    Vorige
-                </button>
+                <nav>
+                    <button
+                        type="button" disabled={pokemonData.previous === null}
+                        onClick={() => setUrlPokemonDeck(pokemonData.previous)}
+                    >
+                        Vorige
+                    </button>
 
-                <button
-                    type="button" disabled={pokemonData.next === null}
-                    onClick={() => setUrlPokemonDeck(pokemonData.next)}
-                >
-                    Volgende
-                </button>
-
+                    <button
+                        type="button" disabled={pokemonData.next === null}
+                        onClick={() => setUrlPokemonDeck(pokemonData.next)}
+                    >
+                        Volgende
+                    </button>
+                </nav>
                 <ul>
                     {pokemonData.results.map((pokemon) => {
-                    return <li key={pokemon.name} >
-                        <PokemonCard
-                            pName={pokemon.name}>
-                        </PokemonCard>
-                    </li>
+                        return <li key={pokemon.name}>
+                            <PokemonCard
+                                pName={pokemon.name}>
+                            </PokemonCard>
+                        </li>
                     })}
                 </ul>
+
             </>
             }
         </>

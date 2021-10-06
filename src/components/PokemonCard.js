@@ -28,7 +28,7 @@ function PokemonCard({ pName}) {
                 <h2>Moves: {pData.moves.length}</h2>
                 <h2>Weight: {pData.weight}</h2>
                 <h2>Abilities:</h2>
-                <ul>
+                <ul className="ability-list">
                     {pData.abilities.map((abilitie) => {
                         return <li key={abilitie.slot}>
                             {abilitie.ability.name}
