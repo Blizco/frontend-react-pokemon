@@ -4,41 +4,41 @@ import './App.css';
 import PokemonCard from "./components/PokemonCard"
 
 function App() {
-    const [count, setCount] = useState(0);
-    const [pokemonData, setPokemonData] = useState({});
-
-    console.log(`Clickbutton is ${count} keer geklikt`);
+    const [pokemonData, setPokemonData] = useState([]);
+    const [urlPokemonDeck, setUrlPokemonDeck] = useState('https://pokeapi.co/api/v2/pokemon?offset=0&limit=20');
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const result = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=20&offset=0");
-                console.log(result.data.results);
-                for (let i = 0; i < result.data.results.length; i++) {
-                    console.log(result.data.results[i].name);
-                }
-                setPokemonData(result.data.results);
+                const result = await axios.get(urlPokemonDeck);
+                setPokemonData(result.data);
             } catch (error) {
                 console.error(error)
             }
         }
-
         fetchData();
-    }, [count]);
+    }, [urlPokemonDeck]);
 
     return (
         <>
             {Object.keys(pokemonData).length > 0 &&
             <>
                 <button
-                    type="button"
-                    onClick={() => setCount(count + 1)}
+                    type="button" disabled={pokemonData.previous === null}
+                    onClick={() => setUrlPokemonDeck(pokemonData.previous)}
                 >
-                    Haal data op!
+                    Vorige
+                </button>
+
+                <button
+                    type="button" disabled={pokemonData.next === null}
+                    onClick={() => setUrlPokemonDeck(pokemonData.next)}
+                >
+                    Volgende
                 </button>
 
                 <ul>
-                    {pokemonData.map((pokemon) => {
+                    {pokemonData.results.map((pokemon) => {
                     return <li key={pokemon.name} >
                         <PokemonCard
                             pName={pokemon.name}>
