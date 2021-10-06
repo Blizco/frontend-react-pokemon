@@ -1,0 +1,53 @@
+body {
+    background-color: goldenrod;
+}
+
+button {
+    align-items: center;
+    background-color: cadetblue;
+    color: white;
+    padding: 8px 16px;
+    cursor:pointer;
+}
+
+button:hover {
+    background-color: mediumblue;
+    color: white;
+    transition: all .4s ease-in-out;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    border-color: cadetblue;
+    color: goldenrod;
+}
+
+button + button {
+    margin-left: 30px;
+}
+
+article {
+    margin: 15px;
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 8px;
+    width: 240px;
+    height: 400px;
+    background-color: white;
+}
+
+nav {
+    align-items: center;
+}
+
+li {
+    list-style: none;
+    display: inline-block;
+}
+
+.ability-list {
+    text-align: center;
+    font-size: 15px;
+    background-color: gainsboro;
+    margin: 20px;
+}
